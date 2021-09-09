@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>1</title>
+<style>
+    #car {
+      position: relative;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<img id="car" src="car.png">
+
+  <script>
+    car.onclick = function() {
+      let start = Date.now();
+
+      let timer = setInterval(function() {
+        let timePassed = Date.now() - start;
+
+        car.style.left = timePassed / 5 + 'px';
+
+        if (timePassed > 2000) 
+			clearInterval(timer);
+
+      }, 20);
+    }
+  </script>
+
+</body>
+</html>

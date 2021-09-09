@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>11</title>
+</head>
+<body>
+
+<input type="button" value="<-" id="but1">
+<img id="image1" src="0.png">
+<img id="image2" src="1.png">
+<img id="image3" src="2.png">
+<input type="button" value="->" id="but2">
+
+<script>
+
+var i=0, j, k, l;
+
+document.getElementById("but1").onclick=function(){
+	i--;
+	if (i<0)
+	{
+		j=4+(i%5);
+		document.getElementById("image1").src = (parseInt(j))+".png";
+	}
+	else document.getElementById("image1").src = (parseInt(i)%5)+".png";
+	
+	if (i+1<0)
+	{
+		k=4+((i+1)%5);
+		document.getElementById("image2").src = (parseInt(k))+".png";
+	}
+	else document.getElementById("image2").src = (parseInt(i+1)%5)+".png";
+	
+	if (i+2<0)
+	{
+		l=4+((i+2)%5);
+		document.getElementById("image3").src = (parseInt(l))+".png";
+	}
+	else document.getElementById("image3").src = (parseInt(i+2)%5)+".png";
+}
+
+document.getElementById("but2").onclick=function(){
+	i++;
+	if (i<0)
+	{
+		j=4+(i%5);
+		document.getElementById("image1").src = (parseInt(j))+".png";
+	}
+	else document.getElementById("image1").src = (parseInt(i)%5)+".png";
+	
+	if (i+1<0)
+	{
+		k=4+((i+1)%5);
+		document.getElementById("image2").src = (parseInt(k))+".png";
+	}
+	else document.getElementById("image2").src = (parseInt(i+1)%5)+".png";
+	
+	if (i+2<0)
+	{
+		l=4+((i+2)%5);
+		document.getElementById("image3").src = (parseInt(l))+".png";
+	}
+	else document.getElementById("image3").src = (parseInt(i+2)%5)+".png";
+}
+
+</script>
+
+</body>
+</html>

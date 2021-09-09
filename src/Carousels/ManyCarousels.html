@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>7</title>
+</head>
+<body id="bd">
+
+<p id="timer">0</p>	
+<input type="button" value="Начать отсчет" id="but1">
+<input type="button" value="Закончить отсчет" id="but2">
+
+<p id="clock">00:00:00</p>
+
+<img id="image1" src="1.jpg">
+
+<br><br>
+
+<img id="image2" src="0.png">
+<img id="image3" src="1.png">
+<img id="image4" src="2.png">
+<img id="image5" src="3.png">
+<img id="image6" src="4.png"><br>
+<input type="button" value="Карусель, карусель, начинает рассказ" id="but3">
+<input type="button" value="И... стоп!" id="but4">
+
+<script>
+document.getElementById("but1").onclick=function(){
+	window.timerId = window.setInterval(function() {
+	document.getElementById("timer").innerHTML = parseInt(document.getElementById("timer").innerHTML)+1;
+}, 1000);
+}
+
+document.getElementById("but2").onclick=function(){
+	window.clearInterval(window.timerId);
+}
+
+var i=1;
+document.getElementById("bd").onload=function(){
+	window.timerId = window.setInterval(function(){
+	var date = new Date();
+	document.getElementById("clock").innerHTML = addZero(date.getHours())+':'+addZero(date.getMinutes())+':'+addZero(date.getSeconds());
+	
+	if (i<4)
+	i++;
+	else i=1;
+	document.getElementById("image1").src = i+".jpg";
+	}, 1000);
+	
+	}
+function addZero(num){
+	if(num <=9) return '0'+num;
+		else return num;
+}
+
+var k=0;
+document.getElementById("but3").onclick=function(){
+	window.timerId = window.setInterval(function() {
+	k++;
+	document.getElementById("image2").src = (parseInt(k)%5)+".png";
+	document.getElementById("image3").src = (parseInt(k+1)%5)+".png";
+	document.getElementById("image4").src = (parseInt(k+2)%5)+".png";
+	document.getElementById("image5").src = (parseInt(k+3)%5)+".png";
+	document.getElementById("image6").src = (parseInt(k+4)%5)+".png";
+}, 1000);
+}
+document.getElementById("but4").onclick=function(){
+	window.clearInterval(window.timerId);
+}
+
+
+
+</script>
+
+</body>
+</html>

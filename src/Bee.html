@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>title</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<script src="script.js"></script>
+
+<canvas id="canvas" width="600" height="600"> </canvas>
+
+<script>
+
+var canvas = document.getElementById("canvas");
+var ctx = canvas.getContext("2d");
+/*var position=0; 
+setInterval(function(){
+	ctx.clearRect(0, 0, 600, 600);
+	ctx.fillRect(0, 0, position, position);
+	position++;
+	if (position>600){
+		position=0;
+	}
+}, 1);*/
+
+var circle = function(x, y, radius, fill){
+	ctx.beginPath();
+	ctx.arc(x, y, radius, 0, Math.PI*2, false);
+	if (fill){
+		ctx.fill();
+	}
+	else{
+		ctx.stroke();
+	}
+};
+
+var DrawBee = function(x, y){
+	ctx.lineWidth=7;
+	ctx.strokeStyle="black";
+	ctx.fillStyle="gold";
+	circle(x, y, 40, true);
+	circle(x, y, 40, false);
+	circle(x-30, y-55, 20, false);
+	circle(x+30, y-55, 20, false);
+	ctx.fillStyle="black";
+	circle(x-15, y-10, 5, true);
+	circle(x+15, y-10, 5, true);
+};
+
+var updatePosition = function(coordinate){
+	var offset = Math.random()*4-2;
+	coordinate+=offset;
+	if (coordinate>600){
+		coordinate=600;
+	}
+	if (coordinate<0){
+		coordinate=0;
+	}
+	return coordinate;
+};
+var x=300;
+var y=300;
+
+setInterval(function(){
+	ctx.clearRect(0, 0, 600, 600);
+	DrawBee(x, y);
+	x=updatePosition(x);
+	y=updatePosition(y);
+}, 30);
+
+DrawBee(300, 300);
+
+</script>
+
+</body>
+</html>
