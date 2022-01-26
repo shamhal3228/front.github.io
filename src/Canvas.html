@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>CANVAS</title>
+</head>
+<body>
+	<canvas id="canvas" width="1000" height="1000"></canvas>
+	<script>
+		var canvas = document.getElementById("canvas");
+		var ctx = canvas.getContext("2d");
+		
+		/* лесенка
+		for(var i=0; i<6;i++){
+			ctx.fillRect(i*100,i*100,100,100);
+		}
+		*/
+		
+		/* человек
+		ctx.fillRect(400,100,200,200);//голова
+		ctx.fillRect(350,320,300,400);//тело
+		ctx.fillRect(440,300,120,20);//шея
+		ctx.fillRect(50,320,300,100);//левая рука
+		ctx.fillRect(650,320,300,100);//правая рука
+		ctx.fillRect(350,720,100,400);//левая нога
+		ctx.fillRect(550,720,100,400);//правая нога
+		*/
+		
+		/* линии
+		ctx.fillStyle="gold";
+		ctx.strokeStyle="violet";
+		ctx.fillRect(0,0,100,100);
+		ctx.lineWidth=10;
+		ctx.strokeRect(150,100,200,200);
+		*/
+		
+		/* крест
+		ctx.lineWidth=10;
+		ctx.strokeStyle="red";
+		ctx.beginPath();
+		ctx.moveTo(10,10);
+		ctx.lineTo(590,590);
+		ctx.moveTo(590,10);
+		ctx.lineTo(10,590);
+		ctx.stroke();
+		*/
+		
+		/* более гибкий человек
+		ctx.lineWidth=35;
+		ctx.strokeStyle="black";
+		ctx.fillRect(400,100,200,200);
+		ctx.beginPath();
+		ctx.moveTo(500,300);//body
+		ctx.lineTo(500,700);
+		ctx.moveTo(500,370);//l hand
+		ctx.lineTo(650,400);
+		ctx.lineTo(700,550);
+		ctx.moveTo(500,370);//r hand
+		ctx.lineTo(350,340);
+		ctx.lineTo(300,200);
+		ctx.moveTo(500,690);//l leg
+		ctx.lineTo(600,850);
+		ctx.lineTo(600,1000);
+		ctx.moveTo(500,690);//r leg
+		ctx.lineTo(400,850);
+		ctx.lineTo(400,1000);
+		ctx.stroke();
+		*/
+		
+		/* домик
+		ctx.strokeStyle="orange";
+		ctx.fillStyle="cyan";
+		ctx.moveTo(300,300);
+		ctx.lineTo(300,180);
+		ctx.lineTo(390,90);
+		ctx.lineTo(480,180);
+		ctx.lineTo(480,300);
+		ctx.lineTo(300,300);
+		//ctx.stroke(); //обводка
+		ctx.fill(); //заливка
+		*/
+		
+		/* круг
+		ctx.fillStyle="red";
+		ctx.strokeStyle="green";
+		ctx.lineWidth=10;
+		ctx.arc(500,500,250,0,Math.PI*2, false);
+		ctx.stroke();
+		ctx.fill();
+		
+		//ctx.beginPath(); между фигурами
+		
+		*/
+		
+		/* мишень
+		var circle = function(x,y,radius){
+			ctx.beginPath();
+			ctx.arc(x,y,radius,0,Math.PI*2,false);
+			ctx.stroke();
+		};
+		
+		ctx.lineWidth=20;
+		
+		ctx.strokeStyle="violet";
+		circle(500,500,50);
+		ctx.strokeStyle="darkblue";
+		circle(500,500,100);
+		ctx.strokeStyle="blue";
+		circle(500,500,150);
+		ctx.strokeStyle="green";
+		circle(500,500,200);
+		ctx.strokeStyle="yellow";
+		circle(500,500,250);
+		ctx.strokeStyle="orange";
+		circle(500,500,300);
+		ctx.strokeStyle="red";
+		circle(500,500,350);
+		*/
+		
+		/* снеговик
+		var circle = function(x,y,radius){
+			ctx.beginPath();
+			ctx.arc(x,y,radius,0,Math.PI*2,false);
+		};
+		
+		ctx.strokeStyle="black";
+		circle(500,220,150);//верхний
+		ctx.stroke();
+		circle(500,620,250);//нижний
+		ctx.stroke();
+		circle(450,200,30);//глаз
+		ctx.fill();
+		circle(550,200,30);//глаз
+		ctx.fill();
+		circle(500,450,20);//пуговка
+		ctx.fill();
+		circle(500,520,20);//пуговка
+		ctx.fill();
+		circle(500,590,20);//пуговка
+		ctx.fill();
+		circle(500,270,25);//морковка
+		ctx.fillStyle="orange";
+		ctx.fill();
+		*/
+		
+		/* анимация пчелы
+		var circle = function(x,y,radius,fill){
+			ctx.beginPath();
+			ctx.arc(x,y,radius,0,Math.PI*2,false);
+			if(fill){
+				ctx.fill();
+			} else{
+				ctx.stroke();
+			}
+		};
+		var drawBee = function(x,y){
+			ctx.lineWidth=10;
+			ctx.strokeStyle = "black";
+			ctx.fillStyle = "gold";
+			circle(x,y,48,true);
+			circle(x,y,48,false);
+			circle(x-30,y-66,30,false);
+			circle(x+30,y-66,30,false);
+			circle(x-12,y-6,12,false);
+			circle(x+12,y-6,12,false);
+			ctx.fillStyle = "white";
+			circle(x-12,y-6,8,true);
+			circle(x+12,y-6,8,true);
+		}
+		var updatePosition = function(coordinate){
+			var offset = Math.random()*4-2;
+			coordinate+=offset;
+			if(coordinate>1000){
+				coordinate=1000;
+			}
+			if(coordinate<0){
+				coordinate=0;
+			}
+			return coordinate;
+		}
+		var x=500;
+		var y=500;
+		setInterval(function(){
+			ctx.clearRect(0,0,1000,1000);
+			ctx.strokeStyle = "black";
+			ctx.strokeRect(0,0,1000,1000);
+			drawBee(x,y);
+			x=updatePosition(x);
+			y=updatePosition(y);
+		},20);
+		*/
+		
+		var Ball = function(){
+			this.x=500;
+			this.y=500;
+			this.xSpeed=Math.random()*10-5;
+			this.ySpeed=Math.random()*10-5;
+			
+			this.r=Math.floor(Math.random()*255);
+			this.g=Math.floor(Math.random()*255);
+			this.b=Math.floor(Math.random()*255);
+		};
+		
+		var circle = function(x,y,radius,fill){
+			ctx.beginPath();
+			ctx.arc(x,y,radius,0,Math.PI*2,false);
+			if(fill){
+				ctx.fill();
+			}else{
+				ctx.stroke();
+			}
+		};
+		
+		Ball.prototype.draw = function(){
+			ctx.fillStyle = "#"+(this.r).toString(16)+(this.g).toString(16)+(this.b).toString(16);
+			circle(this.x,this.y,15,true);
+		};
+		Ball.prototype.move = function(){
+			this.x += this.xSpeed;
+			this.y += this.ySpeed;
+		};
+		Ball.prototype.checkCollision = function(){
+			if(this.x<15||this.x>985){
+				this.xSpeed=-this.xSpeed;
+			}
+			if(this.y<15||this.y>985){
+				this.ySpeed=-this.ySpeed;
+			}
+		};
+		
+		//var ball = new Ball();
+		var balls = [];
+		var N = 500;
+		for(var i=0;i<N;i++){
+			balls.push(new Ball());
+		}
+		setInterval(function(){
+			ctx.clearRect(0,0,1000,1000);
+			ctx.strokeStyle = "black";
+			ctx.strokeRect(0,0,1000,1000);
+			for(var i=0;i<N;i++)
+			{
+				balls[i].draw();
+				balls[i].move();
+				balls[i].checkCollision();
+			}
+		},1);
+	</script>
+</body>
+</html>
